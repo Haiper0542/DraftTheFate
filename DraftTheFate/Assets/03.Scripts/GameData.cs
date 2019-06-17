@@ -18,10 +18,12 @@ public class CardData
 
     public Sprite cardSprite;
 
-    public bool[] activeDice;
+    public bool[] activeDice = new bool[6];
 
     public int damage, shield;
     public int duration;
+
+    public int cost;
 
     [TextArea]
     public string explanation;

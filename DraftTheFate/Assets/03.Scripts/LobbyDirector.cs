@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class LobbyDirector : MonoBehaviour {
-
+    
     [Header("MyDeckBuilding")]
     private RectTransform mydeckBuildingContent;
     private RectTransform mydeckListPanel;

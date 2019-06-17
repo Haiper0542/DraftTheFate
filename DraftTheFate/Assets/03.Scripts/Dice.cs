@@ -5,12 +5,20 @@ using UnityEngine;
 public class Dice : MonoBehaviour {
 
     private Transform[] sides;
+    public int[] indexes = new int[] { 1, 2, 3, 4, 5, 6 };
+    public Sprite surplus;
 
     private void Awake()
     {
         sides = new Transform[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
             sides[i] = transform.GetChild(i);
+    }
+
+    public void Surplus(int index)
+    {
+        sides[index].GetComponent<SpriteRenderer>().sprite = surplus;
+        indexes[index] = -1;
     }
 
     public int Index()
@@ -22,7 +30,7 @@ public class Dice : MonoBehaviour {
             if(minHeight > sides[idx].position.z)
                 index = idx + 1;
         }
-        return index;
+        return indexes[index - 1];
     }
 
     public IEnumerator Roll()

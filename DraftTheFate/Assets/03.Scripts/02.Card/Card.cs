@@ -17,6 +17,8 @@ public abstract class Card : MonoBehaviour {
 
     private bool[] activeDice;
 
+    [HideInInspector]
+    public int cost;
     protected int damage, shield;
     protected int duration;
 
@@ -25,11 +27,13 @@ public abstract class Card : MonoBehaviour {
 
     public int siblingIndex;
 
+    public bool isCursed = false;
     private Player owner;
 
     public RectTransform cardRect;
     public Image card;
     private Text cardNameText;
+    private Text costText;
     private Text explanationText;
     private Image cardImage;
     
@@ -41,6 +45,7 @@ public abstract class Card : MonoBehaviour {
         card = transform.GetComponent<Image>();
         cardRect = transform.GetComponent<RectTransform>();
         cardNameText = transform.Find("CardNameText").GetComponent<Text>();
+        costText = transform.Find("CostText").GetComponent<Text>();
         explanationText = transform.Find("ExplainText").GetComponent<Text>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
         SetInfo();
@@ -56,8 +61,10 @@ public abstract class Card : MonoBehaviour {
         shield = cardData.shield;
         duration = cardData.duration;
         explanation = cardData.explanation;
+        cost = cardData.cost;
 
         cardNameText.text = cardName;
+        costText.text = cost.ToString();
         explanationText.text = explanation;
         cardImage.sprite = cardSprite;
 
@@ -148,7 +155,7 @@ public abstract class Card : MonoBehaviour {
     {
         speed = 50;
         PositionReset();
-        transform.SetSiblingIndex(siblingIndex);
+        transform.SetSiblingIndex(siblingIndex - 1);
     }
 
     public void PositionReset()

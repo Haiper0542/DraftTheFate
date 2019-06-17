@@ -63,10 +63,10 @@
   <ItemGroup>
     <Compile Include="Assets\03.Scripts\02.Card\BlockCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\Card.cs" />
+    <Compile Include="Assets\03.Scripts\02.Card\CSurplusCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\CursedCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\CutCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\DrainCard.cs" />
-    <Compile Include="Assets\03.Scripts\02.Card\PowerupCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\SlashCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\SmiteCard.cs" />
     <Compile Include="Assets\03.Scripts\Arrow.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="Assets\03.Scripts\Player.cs" />
     <Compile Include="Assets\03.Scripts\PlayerAct.cs" />
     <Compile Include="Assets\03.Scripts\Scarecrow.cs" />
+    <Compile Include="Assets\03.Scripts\StartDirector.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/USER/Documents/Git/DraftTheFate/DraftTheFate/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

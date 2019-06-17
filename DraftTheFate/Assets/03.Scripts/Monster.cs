@@ -42,7 +42,12 @@ public abstract class Monster : MonoBehaviour,ICharacter {
 
     public void Death()
     {
+        StartCoroutine(DeathAnim());
+    }
 
+    public IEnumerator DeathAnim()
+    {
+        yield return new WaitForSeconds(1.0f);
     }
 
     public void StartTurn()
@@ -61,8 +66,10 @@ public abstract class Monster : MonoBehaviour,ICharacter {
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
-
         SetInfo();
+
+        if (health <= 0)
+            Death();
     }
 
     public void TakeHeal(int heal)

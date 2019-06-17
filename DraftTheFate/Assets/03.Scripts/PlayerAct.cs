@@ -38,7 +38,18 @@ public partial class Player : MonoBehaviour
     {
         arrow.gameObject.SetActive(false);
         if (result != null && result.CompareTag("Deck"))
-            DropCard(card);
+        {
+            if (card.isCursed)
+            {
+                if (GameDirector.instance.UseCoin(card.GetComponent<CursedCard>().cost))
+                    DropCard(card);
+            }
+            else
+            {
+                GameDirector.instance.GetCoin(card.cost);
+                DropCard(card);
+            }
+        }
 
         isSelected = false;
         nowCard = null;

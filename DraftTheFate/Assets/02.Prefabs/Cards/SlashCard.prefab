@@ -45,6 +45,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1350570050822694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224028808022663942}
+  - component: {fileID: 222656473850060950}
+  - component: {fileID: 114593426516591906}
+  m_Layer: 5
+  m_Name: CostText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1527249399066178
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -242,6 +259,39 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Slash
+--- !u!114 &114593426516591906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350570050822694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 2c46c7caee9dcac48abe4aad38c3998f, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 267
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 0
 --- !u!114 &114606754538835866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,13 +306,16 @@ MonoBehaviour:
   cardData:
     wordIndex: Slash
     cardName: "\uC2AC\uB798\uC26C"
-    cardSprite: {fileID: 21300000, guid: bb3a2a503f6f74e4cbb99b4aac1807d3, type: 3}
+    cardSprite: {fileID: 21300000, guid: 782b6280c2454304594a7f48a77f2dc6, type: 3}
     activeDice: 010101000000
     damage: 3
     shield: 0
     duration: 0
+    cost: 3
     explanation: "[1~3] : \uC801\uC5D0\uAC8C 3\uB370\uBBF8\uC9C0\uB97C \uC785\uD799\uB2C8\uB2E4."
+  cost: 0
   siblingIndex: 0
+  isCursed: 0
   cardRect: {fileID: 0}
   card: {fileID: 0}
   targetRotZ: 0
@@ -348,6 +401,13 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1077277440998996}
   m_CullTransparentMesh: 0
+--- !u!222 &222656473850060950
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350570050822694}
+  m_CullTransparentMesh: 0
 --- !u!222 &222664787849121834
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -369,6 +429,24 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945028203074926}
   m_CullTransparentMesh: 0
+--- !u!224 &224028808022663942
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350570050822694}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.49979994, y: 0.49979994, z: 0.40019998}
+  m_Children: []
+  m_Father: {fileID: 224458366703354776}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -10}
+  m_SizeDelta: {x: 240, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224055892862897400
 RectTransform:
   m_ObjectHideFlags: 1
@@ -438,6 +516,7 @@ RectTransform:
   - {fileID: 224428383875205100}
   - {fileID: 224072248885606860}
   - {fileID: 224459421930949242}
+  - {fileID: 224028808022663942}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

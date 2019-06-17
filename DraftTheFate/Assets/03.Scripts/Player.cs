@@ -180,8 +180,10 @@ public partial class Player : MonoBehaviour , ICharacter
         }
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
-
         SetInfo();
+
+        if (health <= 0)
+            Death();
     }
 
     public void TakeHeal(int heal)
@@ -200,7 +202,12 @@ public partial class Player : MonoBehaviour , ICharacter
 
     public void Death()
     {
+        StartCoroutine(DeathAnim());
+    }
 
+    public IEnumerator DeathAnim()
+    {
+        yield return new WaitForSeconds(1.0f);
     }
 
     float heightTerm = 5;

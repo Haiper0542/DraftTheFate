@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class GameDirector : MonoBehaviour
 {
+    private Transform monsterParent;
+    public Monster[] monsterList;
+    public int wave = 0;
+
     public Player player;
-    public Monster[] monsters;
+    public Monster monster;
 
     private bool isPlayerTurn = true;
 
@@ -24,27 +28,32 @@ public class GameDirector : MonoBehaviour
         instance = this;
         coinText = GameObject.Find("CoinText").GetComponent<Text>();
         stageText = GameObject.Find("StageText").GetComponent<Text>();
+        monsterParent = GameObject.Find("Monsters").transform;
     }
 
     private void Start()
     {
-        BattleStart();
+        StartCoroutine(BattleStart());
     }
 
-    public void BattleStart()
+    public IEnumerator BattleStart()
     {
         stageText.text = mode + " : Stage " + stage;
         coinText.text = coin + " 원";
 
         player = GameObject.Find("Player").GetComponent<Player>();
-        Transform monsterParent = GameObject.Find("Monsters").transform;
-        monsters = new Monster[monsterParent.childCount];
-        for (int i = 0; i < monsterParent.childCount; i++)
-            monsters[i] = monsterParent.GetChild(i).GetComponent<Monster>();
+        player.Shuffle();
+
+        yield return new WaitForSeconds(5.0f);
+        monster = Instantiate(monsterList[wave], monsterParent);
         SwitchTurn();
     }
 
-    int idx = 0;
+    public void BattleEnd()
+    {
+
+    }
+
     public void SwitchTurn()
     {
         if (isPlayerTurn)
@@ -55,23 +64,26 @@ public class GameDirector : MonoBehaviour
         }
         else
         {
-            if (idx < monsters.Length)
-            {
-                monsters[idx].StartTurn();
-                Debug.Log(monsters[idx] + " Turn");
-                idx++;
-                if (idx >= monsters.Length)
-                {
-                    isPlayerTurn = true;
-                    idx = 0;
-                }
-            }
+            monster.StartTurn();
+            Debug.Log(monster + " Turn");
+            isPlayerTurn = true;
         }
     }
 
     public void GetCoin(int coin)
     {
-        coin += coin;
-        coinText.text = coin + " 원";
+        this.coin += coin;
+        coinText.text = this.coin + " 원";
+    }
+
+    public bool UseCoin(int coin)
+    {
+        if (this.coin >= coin)
+        {
+            this.coin -= coin;
+            coinText.text = this.coin + " 원";
+            return true;
+        }
+        return false;
     }
 }

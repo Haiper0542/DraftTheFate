@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
 
-public class SlashCard : Card
+public class BlockCard : Card
 {
     public override bool UseSkill(int index)
     {
-        if (cardData.activeDice[index])
+        if (index > 0 && cardData.activeDice[index])
         {
-            foreach (Monster m in GameDirector.instance.monsters)
-            {
-                m.TakeDamage(damage);
-                Debug.Log(damage);
-            }
+            Player.instance.TakeShield(duration, shield);
             return true;
         }
         return false;
