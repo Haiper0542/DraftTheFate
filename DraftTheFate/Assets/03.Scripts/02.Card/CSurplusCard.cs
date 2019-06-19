@@ -6,7 +6,7 @@ public class CSurplusCard: CursedCard {
 
     public override bool UseSkill(int index)
     {
-        if (index > 0 && cardData.activeDice[index])
+        if (index >= 0 && cardData.activeDice[index])
         {
             Player.instance.dice.Surplus(index);
             return true;

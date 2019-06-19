@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public partial class Player : MonoBehaviour , ICharacter
+public partial class Player : MonoBehaviour, ICharacter
 {
     public List<Card> cardList;
 
@@ -26,9 +26,12 @@ public partial class Player : MonoBehaviour , ICharacter
         }
     }
 
+    public int maxCount = 5;
+
     public Dice dice;
     public Arrow arrow;
 
+    public new Transform collider;
     public RectTransform handTr, deckTr;
 
     private Text shieldText;
@@ -36,7 +39,9 @@ public partial class Player : MonoBehaviour , ICharacter
     private Image healthbarImage;
 
     public GameObject turnArrow;
-    private GameObject turnButton;
+    private Button turnButton;
+
+    private Animation animation;
 
     private Camera uiCamera;
     public static Player instance;
@@ -45,10 +50,11 @@ public partial class Player : MonoBehaviour , ICharacter
     {
         instance = this;
 
+        animation = transform.GetComponent<Animation>();
         gr = mycanvas.GetComponent<GraphicRaycaster>();
         ped = new PointerEventData(null);
 
-        turnButton = GameObject.Find("DiceButton");
+        turnButton = GameObject.Find("DicePanel").GetComponent<Button>();
         uiCamera = GameObject.Find("UI Camera").GetComponent<Camera>();
         shieldText = transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Text>();
         healthText = transform.GetChild(1).GetChild(1).GetComponent<Text>();
@@ -74,33 +80,39 @@ public partial class Player : MonoBehaviour , ICharacter
     {
         shieldText.text = shield.ToString();
         healthText.text = String.Format("{0}/{1}", health, maxHealth);
+        healthbarImage.fillAmount = (float)health / maxHealth;
     }
 
     public void StartTurn()
     {
         turnArrow.SetActive(true);
-        turnButton.SetActive(true);
 
         int handCount = hand.Count;
-        for (int i = 5; i > handCount; i--)
+        for (int i = maxCount; i > handCount; i--)
             DrawCard(i);
         CardPositionReset();
+
+        canDrag = true;
+        turnButton.interactable = true;
     }
 
     public void EndTurn()
     {
-        turnButton.SetActive(false);
+        turnButton.interactable = false;
+        canDrag = false;
         StartCoroutine(EndTurnAnim());
     }
 
-    IEnumerator EndTurnAnim()
+    public IEnumerator EndTurnAnim()
     {
         yield return StartCoroutine(dice.Roll());
         int idx = 0;
+        yield return new WaitForSeconds(0.5f);
         while (idx < hand.Count)
         {
             if (hand[idx].UseSkill(dice.Index() - 1))
             {
+                yield return new WaitForSeconds(0.4f);
                 DropCard(hand[idx]);
             }
             else
@@ -164,11 +176,13 @@ public partial class Player : MonoBehaviour , ICharacter
             if (shieldList[idx].shield > damage) //데미지 완전 상쇄
             {
                 shieldList[idx].shield -= damage;
+                DamagerManager.instance.MakeToast("- " + damage, shieldText.transform.position + Vector3.up * 0.5f, Color.blue);
                 damage = 0;
                 break;
             }
             else //데미지 일부 상쇄
             {
+                DamagerManager.instance.MakeToast("- " + shieldList[idx].shield, shieldText.transform.position + Vector3.up * 0.5f, Color.blue);
                 damage -= shieldList[idx].shield;
                 shieldList[idx].shield = 0;
 
@@ -180,6 +194,8 @@ public partial class Player : MonoBehaviour , ICharacter
         }
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
+        if(damage > 0)
+        DamagerManager.instance.MakeToast("- " + damage, healthText.transform.position + Vector3.up * 0.5f, Color.red);
         SetInfo();
 
         if (health <= 0)
@@ -190,6 +206,7 @@ public partial class Player : MonoBehaviour , ICharacter
     {
         health += heal;
         health = Mathf.Clamp(health, 0, maxHealth);
+        DamagerManager.instance.MakeToast("+ " + heal, healthbarImage.transform.position + Vector3.up * 0.5f, Color.green);
 
         SetInfo();
     }
@@ -200,6 +217,20 @@ public partial class Player : MonoBehaviour , ICharacter
         SetInfo();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+            Death();
+
+        ped.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        gr.Raycast(ped, results);
+        if (results.Count != 0)
+            result = results[0].gameObject;
+        else
+            result = null;
+    }
+
     public void Death()
     {
         StartCoroutine(DeathAnim());
@@ -207,7 +238,11 @@ public partial class Player : MonoBehaviour , ICharacter
 
     public IEnumerator DeathAnim()
     {
+        yield return new WaitForSeconds(0.1f);
+        animation.Play("Death");
         yield return new WaitForSeconds(1.0f);
+        Time.timeScale = 0;
+        StartCoroutine(GameDirector.instance.GameEnd());
     }
 
     float heightTerm = 5;

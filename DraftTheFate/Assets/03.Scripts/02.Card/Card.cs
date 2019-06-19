@@ -153,8 +153,11 @@ public abstract class Card : MonoBehaviour {
 
     public void CardExit()
     {
-        speed = 50;
-        PositionReset();
+        if (Player.instance.isSelected)
+            return;
+        cardRect.anchoredPosition3D = owner.CardPosition(siblingIndex);
+        cardRect.eulerAngles = new Vector3(0, 0, owner.CardRotation(siblingIndex));
+        cardRect.localScale = Vector3.one * 1;
         transform.SetSiblingIndex(siblingIndex - 1);
     }
 

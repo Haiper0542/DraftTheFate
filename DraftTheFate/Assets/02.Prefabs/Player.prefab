@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224620209543452312}
   - component: {fileID: 114858307972729958}
+  - component: {fileID: 111590970020317504}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -213,6 +214,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1907525127474956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224463813026424748}
+  m_Layer: 5
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!111 &111590970020317504
+Animation:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490420406850372}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 9f4b4719ef4645540863b6ef43f65400, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114011196307741692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -490,18 +521,21 @@ MonoBehaviour:
   cardList:
   - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
   - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
+  - {fileID: 114052229549534726, guid: 1343e0d322494ab4d85c162ad11d93bb, type: 2}
+  - {fileID: 114052229549534726, guid: 1343e0d322494ab4d85c162ad11d93bb, type: 2}
+  - {fileID: 114059514785760962, guid: f0065dc30bb7a1845a2e609580b08c3c, type: 2}
+  - {fileID: 114059514785760962, guid: f0065dc30bb7a1845a2e609580b08c3c, type: 2}
+  - {fileID: 114151910560086996, guid: 092fb7d640312b44cbb58f96e31b79a1, type: 2}
+  - {fileID: 114558085662904290, guid: 90b85c3089c801d4da21c2d6d95102c3, type: 2}
   - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
-  - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
-  - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
-  - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
-  - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
-  - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
-  - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
-  - {fileID: 114606754538835866, guid: 9f4a347e17a991a46a4d6e7753ffabc2, type: 2}
+  - {fileID: 114052229549534726, guid: 1343e0d322494ab4d85c162ad11d93bb, type: 2}
+  - {fileID: 114012893640314470, guid: 7f2b00c4facf80b49a1f351e1b92ad28, type: 2}
+  - {fileID: 114012893640314470, guid: 7f2b00c4facf80b49a1f351e1b92ad28, type: 2}
   hand: []
-  maxHealth: 10
+  maxHealth: 15
   dice: {fileID: 0}
   arrow: {fileID: 0}
+  collider: {fileID: 224463813026424748}
   handTr: {fileID: 0}
   deckTr: {fileID: 0}
   turnArrow: {fileID: 1526344429364486}
@@ -630,7 +664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: 120}
+  m_AnchoredPosition: {x: -40, y: 130}
   m_SizeDelta: {x: 200, y: 25}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224128227461615174
@@ -687,6 +721,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!224 &224463813026424748
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1907525127474956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224620209543452312}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 36, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224530655286190944
 RectTransform:
   m_ObjectHideFlags: 1
@@ -718,12 +770,13 @@ RectTransform:
   - {fileID: 224702294786994858}
   - {fileID: 224000856735474688}
   - {fileID: 224354523625814008}
+  - {fileID: 224463813026424748}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 30}
+  m_AnchoredPosition: {x: 180, y: -46.47}
   m_SizeDelta: {x: 100, y: 260}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224702294786994858
@@ -734,7 +787,7 @@ RectTransform:
   m_GameObject: {fileID: 1720167686962198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 224814439939947920}
   - {fileID: 224733546978588000}
