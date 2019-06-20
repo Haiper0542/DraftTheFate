@@ -2,9 +2,9 @@
 
 public class DrainCard : Card
 {
-    public override bool UseSkill(int index)
+    public override bool UseSkill()
     {
-        if (index >= 0 && cardData.activeDice[index])
+        if (Player.instance.cost >= cost)
         {
             GameDirector.instance.monster.TakeDamage(damage);
             Player.instance.TakeHeal(damage);

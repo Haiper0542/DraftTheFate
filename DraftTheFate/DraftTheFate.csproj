@@ -304,9 +304,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\03.Scripts\01.Monster\Goblin.cs" />
     <Compile Include="Assets\03.Scripts\01.Monster\GroundSnake.cs" />
     <Compile Include="Assets\03.Scripts\01.Monster\Monster.cs" />
     <Compile Include="Assets\03.Scripts\01.Monster\Scarecrow.cs" />
+    <Compile Include="Assets\03.Scripts\01.Monster\Slime.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\BlockCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\Card.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\CSurplusCard.cs" />

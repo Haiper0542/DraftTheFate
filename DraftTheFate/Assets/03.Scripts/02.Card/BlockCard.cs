@@ -2,11 +2,12 @@
 
 public class BlockCard : Card
 {
-    public override bool UseSkill(int index)
+    public override bool UseSkill()
     {
-        if (index >= 0 && cardData.activeDice[index])
+        if (Player.instance.cost >= cost)
         {
             Player.instance.TakeShield(duration, shield);
+            Player.instance.UseCost(cost);
             return true;
         }
         return false;

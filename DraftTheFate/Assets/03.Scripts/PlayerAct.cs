@@ -24,33 +24,41 @@ public partial class Player : MonoBehaviour
         isSelected = true;
         nowCard = card;
         arrow.transform.position = card.transform.position;
-        arrow.gameObject.SetActive(true);
+        arrow.Active(true);
     }
 
     public void CardDragEnd(Card card)
     {
         if (!canDrag && !isSelected)
             return;
-        arrow.gameObject.SetActive(false);
+        arrow.Active(false);
 
         isSelected = false;
         nowCard = null;
 
-        if (result != null && result.CompareTag("Deck"))
+        if (result != null)
         {
-            if (card.isCursed)
+            if (result.CompareTag("Deck"))
             {
-                if (GameDirector.instance.UseCoin(card.GetComponent<CursedCard>().cost))
+                GetCost(card.cost);
+                DropCard(card);
+                return;
+            }
+            else if (!result.CompareTag("Panel") && !card.isTargeting)
+            {
+                if (card.UseSkill())
                 {
                     DropCard(card);
                     return;
                 }
             }
-            else
+            else if (result.CompareTag("Monster") && card.isTargeting)
             {
-                GameDirector.instance.GetCoin(card.cost);
-                DropCard(card);
-                return;
+                if (card.UseSkill())
+                {
+                    DropCard(card);
+                    return;
+                }
             }
         }
 

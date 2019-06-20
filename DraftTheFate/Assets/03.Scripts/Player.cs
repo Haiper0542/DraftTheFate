@@ -12,6 +12,7 @@ public partial class Player : MonoBehaviour, ICharacter
     private Queue<Card> deck = new Queue<Card>();
     public List<Card> hand = new List<Card>();
 
+    public int cost;
     public int maxHealth;
     private int health;
     public List<Shield> shieldList = new List<Shield>();
@@ -34,6 +35,8 @@ public partial class Player : MonoBehaviour, ICharacter
     public new Transform collider;
     public RectTransform handTr, deckTr;
 
+    public GameObject[] costbar;
+
     private Text shieldText;
     private Text healthText;
     private Image healthbarImage;
@@ -54,7 +57,7 @@ public partial class Player : MonoBehaviour, ICharacter
         gr = mycanvas.GetComponent<GraphicRaycaster>();
         ped = new PointerEventData(null);
 
-        turnButton = GameObject.Find("DicePanel").GetComponent<Button>();
+        turnButton = GameObject.Find("TurnButton").GetComponent<Button>();
         uiCamera = GameObject.Find("UI Camera").GetComponent<Camera>();
         shieldText = transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Text>();
         healthText = transform.GetChild(1).GetChild(1).GetComponent<Text>();
@@ -81,19 +84,34 @@ public partial class Player : MonoBehaviour, ICharacter
         shieldText.text = shield.ToString();
         healthText.text = String.Format("{0}/{1}", health, maxHealth);
         healthbarImage.fillAmount = (float)health / maxHealth;
+        for (int i = 0; i < 6; i++)
+        {
+            if (i < cost)
+                costbar[i].SetActive(true);
+            else
+                costbar[i].SetActive(false);
+        }
+    }
+
+    private void GetCost(int cost)
+    {
+        this.cost += cost;
+        this.cost = Mathf.Clamp(this.cost, 0, 6);
+        SetInfo();
+    }
+
+    public void UseCost(int cost)
+    {
+        this.cost -= cost;
+        this.cost = Mathf.Clamp(this.cost, 0, 6);
+        SetInfo();
     }
 
     public void StartTurn()
     {
         turnArrow.SetActive(true);
-
-        int handCount = hand.Count;
-        for (int i = maxCount; i > handCount; i--)
-            DrawCard(i);
-        CardPositionReset();
-
         canDrag = true;
-        turnButton.interactable = true;
+        StartCoroutine(StartTurnAnim());
     }
 
     public void EndTurn()
@@ -103,22 +121,25 @@ public partial class Player : MonoBehaviour, ICharacter
         StartCoroutine(EndTurnAnim());
     }
 
+    public IEnumerator StartTurnAnim()
+    {
+        int handCount = hand.Count;
+        for (int i = maxCount; i > handCount; i--)
+        {
+            DrawCard(i);
+            CardPositionReset();
+            yield return new WaitForSeconds(0.2f);
+        }
+        yield return new WaitForSeconds(1.2f);
+
+        yield return StartCoroutine(dice.Roll());
+        GetCost(dice.Index());
+        turnButton.interactable = true;
+    }
+
     public IEnumerator EndTurnAnim()
     {
-        yield return StartCoroutine(dice.Roll());
-        int idx = 0;
-        yield return new WaitForSeconds(0.5f);
-        while (idx < hand.Count)
-        {
-            if (hand[idx].UseSkill(dice.Index() - 1))
-            {
-                yield return new WaitForSeconds(0.4f);
-                DropCard(hand[idx]);
-            }
-            else
-                ++idx;
-        }
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.0f);
         turnArrow.SetActive(false);
         GameDirector.instance.SwitchTurn();
     }

@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -281,14 +281,14 @@ MonoBehaviour:
     cardName: "\uAC15\uD0C0"
     cardSprite: {fileID: 21300000, guid: 5a263d78ab6a69e44afdc78b92d16a37, type: 3}
     activeDice: 000000010101
-    damage: 0
+    damage: 5
     shield: 0
     duration: 0
     cost: 5
-    explanation: "[4~6] : \uC801\uC5D0\uAC8C \"\uC8FC\uC0AC\uC704 \uB208\uAE08\"\uB9CC\uD07C\uC758
-      \uB370\uBBF8\uC9C0\uB97C \uC785\uD799\uB2C8\uB2E4."
+    explanation: "\uC801\uC5D0\uAC8C 5\uB370\uBBF8\uC9C0\uB97C \uC785\uD799\uB2C8\uB2E4."
   cost: 0
   siblingIndex: 0
+  isTargeting: 1
   isCursed: 0
   cardRect: {fileID: 0}
   card: {fileID: 0}
@@ -463,7 +463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000002860451, y: -10}
+  m_AnchoredPosition: {x: -70, y: -28}
   m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224320718970780822

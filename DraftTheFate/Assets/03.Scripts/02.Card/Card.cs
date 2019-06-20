@@ -27,6 +27,7 @@ public abstract class Card : MonoBehaviour {
 
     public int siblingIndex;
 
+    public bool isTargeting = false;
     public bool isCursed = false;
     private Player owner;
 
@@ -37,7 +38,7 @@ public abstract class Card : MonoBehaviour {
     private Text explanationText;
     private Image cardImage;
     
-    public abstract bool UseSkill(int index);
+    public abstract bool UseSkill();
 
     private void Awake()
     {

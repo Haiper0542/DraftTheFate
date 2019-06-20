@@ -1,6 +1,6 @@
 ﻿public class CursedCard : Card
 {
-    public override bool UseSkill(int index)
+    public override bool UseSkill()
     {
         return false;
     }

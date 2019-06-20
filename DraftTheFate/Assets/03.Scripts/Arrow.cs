@@ -32,6 +32,22 @@ public class Arrow : MonoBehaviour {
         dots = new Vector2[dotCount];
     }
 
+    public void Active(bool on)
+    {
+        if (on)
+        {
+            for (int i = 0; i < dotCount; i++)
+                arrows[i].localPosition = Vector3.zero;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            for (int i = 0; i < dotCount; i++)
+                arrows[i].localPosition = Vector3.zero;
+            gameObject.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         targetPos = UIPosition(Input.mousePosition.x, Input.mousePosition.y);

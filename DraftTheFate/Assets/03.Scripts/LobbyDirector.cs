@@ -79,9 +79,8 @@ public class LobbyDirector : MonoBehaviour {
         noteRect.anchoredPosition = Vector2.zero;
 
         yield return new WaitForSeconds(0.7f);
-
-        if (adventureCount >= explainList.Length) adventureCount = explainList.Length - 1;
-        string explain = explainList[adventureCount];
+        
+        string explain = explainList[Random.Range(0,explainList.Length)];
         
         float term = 0.04f;
         for(int i = 0;i< explain.Length; i+=2)
@@ -89,7 +88,7 @@ public class LobbyDirector : MonoBehaviour {
             explainText.text = explain.Substring(0, i);
             yield return new WaitForSeconds(term);
         }
-        explainText.text = explain.Substring(0, explain.Length - 1);
+        explainText.text = explain.Substring(0, explain.Length);
 
         yield return new WaitForSeconds(0.4f);
         startText.gameObject.SetActive(true);
@@ -100,6 +99,7 @@ public class LobbyDirector : MonoBehaviour {
         notePanel.SetActive(false);
         startText.gameObject.SetActive(false);
         RectTransform noteRect = notePanel.GetComponent<RectTransform>();
+        explainText.text = string.Empty;
         noteRect.anchoredPosition = new Vector2(0, 600);
     }
 

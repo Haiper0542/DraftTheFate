@@ -113,7 +113,7 @@ public class GameDirector : MonoBehaviour
 
         float term = 0.04f;
         string explain = endExplain[Random.Range(0, endExplain.Length)];
-        for (int i = 0; i < explain.Length; i++)
+        for (int i = 0; i <= explain.Length; i++)
         {
             explainText.text = explain.Substring(0, i);
             yield return new WaitForSecondsRealtime(term);

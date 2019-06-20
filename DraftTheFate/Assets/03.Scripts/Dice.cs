@@ -66,7 +66,7 @@ public class Dice : MonoBehaviour {
         int signY = (int)Mathf.Sign(gapY);
         int signZ = (int)Mathf.Sign(gapZ);
 
-        speed = 80;
+        speed = 100;
         while (!(((signX > 0 && gapX <= 0) || (signX < 0 && gapX >= 0)) &&
             ((signY > 0 && gapY <= 0) || (signY < 0 && gapY >= 0))&&
             ((signZ > 0 && gapZ <= 0) || (signZ < 0 && gapZ >= 0))
