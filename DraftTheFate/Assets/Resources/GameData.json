@@ -1,4 +1,36 @@
 {
-    "cardInventory": [],
-    "myDeck": []
+    "cardDeselectedInventory": [
+        "Slash",
+        "Slash",
+        "Cut",
+        "Cut",
+        "Cut",
+        "Block",
+        "Block",
+        "QuickSlash",
+        "BrokenShield",
+        "WoundSlash",
+        "Block",
+        "Drain",
+        "QuickSlash",
+        "Smite",
+        "KnifeThrow",
+        "BrokenShield",
+        "Block",
+        "Drain"
+    ],
+    "cardSelectedInventory": [
+        "WoundSlash",
+        "QuickSlash",
+        "Smite",
+        "KnifeThrow",
+        "Cut"
+    ],
+    "myDeck": [
+        "WoundSlash",
+        "QuickSlash",
+        "Smite",
+        "KnifeThrow",
+        "Cut"
+    ]
 }

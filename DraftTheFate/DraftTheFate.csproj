@@ -304,20 +304,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\03.Scripts\01.Monster\BatSlime.cs" />
     <Compile Include="Assets\03.Scripts\01.Monster\Goblin.cs" />
     <Compile Include="Assets\03.Scripts\01.Monster\GroundSnake.cs" />
     <Compile Include="Assets\03.Scripts\01.Monster\Monster.cs" />
+    <Compile Include="Assets\03.Scripts\01.Monster\Mushroom.cs" />
     <Compile Include="Assets\03.Scripts\01.Monster\Scarecrow.cs" />
     <Compile Include="Assets\03.Scripts\01.Monster\Slime.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\BlockCard.cs" />
+    <Compile Include="Assets\03.Scripts\02.Card\BrokenShieldCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\Card.cs" />
+    <Compile Include="Assets\03.Scripts\02.Card\CardFrame.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\CSurplusCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\CursedCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\CutCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\DrainCard.cs" />
+    <Compile Include="Assets\03.Scripts\02.Card\KnifeThrowCard.cs" />
+    <Compile Include="Assets\03.Scripts\02.Card\QuickSlashCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\SlashCard.cs" />
     <Compile Include="Assets\03.Scripts\02.Card\SmiteCard.cs" />
+    <Compile Include="Assets\03.Scripts\02.Card\WoundSlashCard.cs" />
     <Compile Include="Assets\03.Scripts\Arrow.cs" />
+    <Compile Include="Assets\03.Scripts\AudioManager.cs" />
     <Compile Include="Assets\03.Scripts\DamagerManager.cs" />
     <Compile Include="Assets\03.Scripts\DataManager.cs" />
     <Compile Include="Assets\03.Scripts\Dice.cs" />

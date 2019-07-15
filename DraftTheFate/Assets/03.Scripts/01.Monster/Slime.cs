@@ -36,6 +36,7 @@ public class Slime : Monster
         slimeball.gameObject.SetActive(true);
 
         float targetPos = GameDirector.instance.player.collider.position.x;
+        AudioManager.instance.PlayEffect("SlimeJump");
 
         while (slimeball.position.x > targetPos)
         {

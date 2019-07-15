@@ -1,0 +1,91 @@
+{
+    "cardDeselectedInventory": [
+        "Cut",
+        "Cut"
+    ],
+    "cardSelectedInventory": [
+        "Block",
+        "Block",
+        "Drain",
+        "Cut",
+        "Smite",
+        "Slash",
+        "Cut"
+    ],
+    "myDeck": [
+        "Block",
+        "Block",
+        "Drain",
+        "Cut",
+        "Smite",
+        "Slash",
+        "Cut"
+    ],
+    "cardDataList": [
+        {
+            "wordIndex": "Block",
+            "cardName": "막기",
+            "cardSprite": {
+                "instanceID": 0
+            },
+            "activeDice": [],
+            "damage": 0,
+            "shield": 3,
+            "duration": 2,
+            "cost": 5,
+            "explanation": "2턴간 유지되는 방어막 3을 획득합니다."
+        },
+        {
+            "wordIndex": "Cut",
+            "cardName": "베기",
+            "cardSprite": {
+                "instanceID": 0
+            },
+            "activeDice": [],
+            "damage": 1,
+            "shield": 0,
+            "duration": 0,
+            "cost": 1,
+            "explanation": "적에게 1데미지를 입힙니다."
+        },
+        {
+            "wordIndex": "Drain",
+            "cardName": "흡수",
+            "cardSprite": {
+                "instanceID": 0
+            },
+            "activeDice": [],
+            "damage": 2,
+            "shield": 0,
+            "duration": 0,
+            "cost": 4,
+            "explanation": "적에게서 체력 2를 흡수합니다."
+        },
+        {
+            "wordIndex": "Slash",
+            "cardName": "슬래쉬",
+            "cardSprite": {
+                "instanceID": 0
+            },
+            "activeDice": [],
+            "damage": 3,
+            "shield": 0,
+            "duration": 0,
+            "cost": 3,
+            "explanation": "적에게 3데미지를 입힙니다."
+        },
+        {
+            "wordIndex": "Smite",
+            "cardName": "강타",
+            "cardSprite": {
+                "instanceID": 0
+            },
+            "activeDice": [],
+            "damage": 5,
+            "shield": 0,
+            "duration": 0,
+            "cost": 5,
+            "explanation": "적에게 5데미지를 입힙니다."
+        }
+    ]
+}

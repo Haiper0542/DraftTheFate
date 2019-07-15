@@ -7,6 +7,7 @@ public class SlashCard : Card
         if (Player.instance.cost >= cost)
         {
             GameDirector.instance.monster.TakeDamage(damage);
+            AudioManager.instance.PlayEffect("Swing");
             Player.instance.UseCost(cost);
             return true;
         }

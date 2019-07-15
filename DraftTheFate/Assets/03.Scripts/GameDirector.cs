@@ -55,6 +55,7 @@ public class GameDirector : MonoBehaviour
     private void Start()
     {
         StartCoroutine(BattleStart());
+        AudioManager.instance.PlayBackground("Rafael_Bgm");
     }
 
     public IEnumerator BattleStart()
@@ -131,7 +132,7 @@ public class GameDirector : MonoBehaviour
 
     public void SwitchTurn()
     {
-        if (!isBattle) return;
+        if (!isBattle || GameDirector.instance.monster.isDead) return;
         Debug.Log("SwitchTurn");
 
         if (isPlayerTurn)

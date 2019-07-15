@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public List<CardData> cardInventory;
-    public List<CardData> myDeck;
+    public List<string> cardDeselectedInventory;
+    public List<string> cardSelectedInventory;
+    public List<string> myDeck;
 }
 
 [System.Serializable]

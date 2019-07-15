@@ -27,6 +27,10 @@ public partial class Player : MonoBehaviour, ICharacter
         }
     }
 
+    public bool canGetCost = true;
+
+    public int woundSlashCount = 0;
+
     public int maxCount = 5;
 
     public Dice dice;
@@ -69,9 +73,9 @@ public partial class Player : MonoBehaviour, ICharacter
 
     private void Start()
     {
-        foreach (Card c in cardList)
+        foreach (string cardName in DataManager.instance.gameData.myDeck)
         {
-            Card newCard = Instantiate(c, deckTr);
+            Card newCard = Instantiate(DataManager.instance.cardPrefabData[cardName], deckTr);
             newCard.transform.SetAsFirstSibling();
             newCard.PositionReset(deckTr.position, 0, 0.5f);
             newCard.transform.localScale = Vector3.one * 0.5f;
@@ -109,13 +113,17 @@ public partial class Player : MonoBehaviour, ICharacter
 
     public void StartTurn()
     {
-        turnArrow.SetActive(true);
-        canDrag = true;
+        if (canGetCost)
+        {
+            turnArrow.SetActive(true);
+            canDrag = true;
+        }
         StartCoroutine(StartTurnAnim());
     }
 
     public void EndTurn()
     {
+        Debug.Log(false);
         turnButton.interactable = false;
         canDrag = false;
         StartCoroutine(EndTurnAnim());
@@ -123,6 +131,16 @@ public partial class Player : MonoBehaviour, ICharacter
 
     public IEnumerator StartTurnAnim()
     {
+        int idx = 0;
+        while (idx < shieldList.Count)
+        {
+            shieldList[idx].duration--;
+            if (shieldList[idx].duration <= 0)
+                shieldList.RemoveAt(idx);
+            else
+                ++idx;
+        }
+
         int handCount = hand.Count;
         for (int i = maxCount; i > handCount; i--)
         {
@@ -132,15 +150,24 @@ public partial class Player : MonoBehaviour, ICharacter
         }
         yield return new WaitForSeconds(1.2f);
 
-        yield return StartCoroutine(dice.Roll());
-        GetCost(dice.Index());
-        turnButton.interactable = true;
+        if (canGetCost)
+        {
+            yield return StartCoroutine(dice.Roll());
+            GetCost(dice.Index());
+
+            turnButton.interactable = true;
+        }
+        else
+        {
+            canGetCost = true;
+            EndTurn();
+        }
     }
 
     public IEnumerator EndTurnAnim()
     {
-        yield return new WaitForSeconds(1.0f);
         turnArrow.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
         GameDirector.instance.SwitchTurn();
     }
 
@@ -167,6 +194,12 @@ public partial class Player : MonoBehaviour, ICharacter
 
     public void DrawCard(int index)
     {
+        if (deck.Count < 1)
+            return;
+        float temp = AudioManager.instance.effectSlider.value;
+        AudioManager.instance.SetEffectVolume(0.05f);
+        AudioManager.instance.PlayEffect("Draw");
+        AudioManager.instance.SetEffectVolume(temp);
         Card newCard = deck.Dequeue();
         newCard.siblingIndex = index;
         newCard.transform.SetParent(handTr);

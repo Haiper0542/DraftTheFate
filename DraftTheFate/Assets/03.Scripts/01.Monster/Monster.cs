@@ -54,6 +54,8 @@ public abstract class Monster : MonoBehaviour,ICharacter {
         if (isDead) return;
         isDead = true;
         StopCoroutine(Player.instance.EndTurnAnim());
+        StopCoroutine(StartPattern());
+        Player.instance.EndTurn();
         StartCoroutine(DeathAnim());
     }
 

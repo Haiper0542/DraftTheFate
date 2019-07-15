@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardData:
-    wordIndex: block
+    wordIndex: Block
     cardName: "\uB9C9\uAE30"
     cardSprite: {fileID: 21300000, guid: 8679e7afe95dd4245851fd4a84e5b1d2, type: 3}
     activeDice: 010100000000
@@ -152,12 +152,13 @@ MonoBehaviour:
     shield: 3
     duration: 2
     cost: 5
-    explanation: "2\uD134\uAC04 \uC720\uC9C0\uB418\uB294 \uBC29\uC5B4\uB9C9 3\uC744
-      \uD68D\uB4DD\uD569\uB2C8\uB2E4."
+    explanation: "2\uD134\uAC04 \uC720\uC9C0\uB418\uB294 3 \uBC29\uC5B4\uB9C9\uC744
+      \uD68D\uB4DD\uD55C\uB2E4."
   cost: 0
   siblingIndex: 0
   isTargeting: 0
   isCursed: 0
+  owner: {fileID: 0}
   cardRect: {fileID: 0}
   card: {fileID: 0}
   targetRotZ: 0

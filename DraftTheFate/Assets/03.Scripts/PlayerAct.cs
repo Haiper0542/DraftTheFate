@@ -24,6 +24,9 @@ public partial class Player : MonoBehaviour
         isSelected = true;
         nowCard = card;
         arrow.transform.position = card.transform.position;
+        card.cardRect.localScale = Vector3.one;
+        card.cardRect.anchoredPosition3D = card.owner.CardPosition(card.siblingIndex);
+        card.cardRect.eulerAngles = new Vector3(0, 0, card.owner.CardRotation(card.siblingIndex));
         arrow.Active(true);
     }
 

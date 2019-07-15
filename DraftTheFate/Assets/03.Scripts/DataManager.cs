@@ -8,6 +8,10 @@ public class DataManager : MonoBehaviour {
 
     public TextAsset jsonFile;
     public GameData gameData;
+
+    public List<Card> cardPrefabs;
+    public Dictionary<string, Card> cardPrefabData = new Dictionary<string, Card>();
+
     public static DataManager instance;
 
     private void Awake()
@@ -16,7 +20,31 @@ public class DataManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
         instance = this;
 
-        SaveData(new GameData());
+        //SaveData(gameData);
+
+        foreach (Card c in cardPrefabs)
+            cardPrefabData.Add(c.cardData.wordIndex, c);
+
+        LoadData();
+    }
+
+    public void PickupCard(string cardName)
+    {
+        gameData.cardDeselectedInventory.Remove(cardName);
+        gameData.cardSelectedInventory.Add(cardName);
+        gameData.myDeck.Add(cardName);
+    }
+
+    public void DropCard(string cardName)
+    {
+        gameData.myDeck.Remove(cardName);
+        gameData.cardDeselectedInventory.Add(cardName);
+        gameData.cardSelectedInventory.Remove(cardName);
+    }
+
+    public void SaveDeck()
+    {
+        SaveData(gameData);
     }
 
     public void SaveData(GameData data)

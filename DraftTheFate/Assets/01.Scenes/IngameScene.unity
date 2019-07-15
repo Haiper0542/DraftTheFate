@@ -1268,7 +1268,6 @@ GameObject:
   m_Component:
   - component: {fileID: 611746270}
   - component: {fileID: 611746272}
-  - component: {fileID: 611746271}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: MainCamera
@@ -1289,13 +1288,6 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &611746271
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 611746269}
-  m_Enabled: 1
 --- !u!20 &611746272
 Camera:
   m_ObjectHideFlags: 0
@@ -1813,9 +1805,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterList:
+  - {fileID: 114386508004009922, guid: 8ae4a6b723c067c44899372448777bed, type: 2}
   - {fileID: 114550773250318062, guid: 80c3c62f9eae573469ea30160672dcdc, type: 2}
-  - {fileID: 114188046414946232, guid: 54783773d4d13e341ba0433453641d0b, type: 2}
   - {fileID: 114765156536676460, guid: 32074efb1ed3b9a468f12eb3e6f56df6, type: 2}
+  - {fileID: 114188046414946232, guid: 54783773d4d13e341ba0433453641d0b, type: 2}
+  - {fileID: 114828060996556336, guid: dbb1f5f6f84771b4ca83c00dd9282ea0, type: 2}
   wave: 0
   player: {fileID: 0}
   monster: {fileID: 0}

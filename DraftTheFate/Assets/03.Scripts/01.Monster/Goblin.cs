@@ -16,7 +16,9 @@ public class Goblin : Monster
     public IEnumerator Attack()
     {
         animation.Play("Attack");
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.6f);
+        AudioManager.instance.PlayEffect("GoblinAttack");
+        yield return new WaitForSeconds(0.1f);
         Player.instance.TakeDamage(Random.Range(1, 3));
         yield return null;
     }

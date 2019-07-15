@@ -29,13 +29,13 @@ public abstract class Card : MonoBehaviour {
 
     public bool isTargeting = false;
     public bool isCursed = false;
-    private Player owner;
+    public Player owner;
 
     public RectTransform cardRect;
     public Image card;
     private Text cardNameText;
     private Text costText;
-    private Text explanationText;
+    protected Text explanationText;
     private Image cardImage;
     
     public abstract bool UseSkill();
@@ -100,7 +100,7 @@ public abstract class Card : MonoBehaviour {
 
     float speed = 1;
     float posDead = 1, rotDead = 3, scaleDead = 0.2f;
-    private void Update()
+    protected virtual void Update()
     {
         if (isMovePos)
         {

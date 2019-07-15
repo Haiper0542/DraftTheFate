@@ -22,6 +22,8 @@ public class GroundSnake : Monster
 
         float targetPos = GameDirector.instance.player.collider.position.x;
 
+        AudioManager.instance.PlayEffect("GroundSnake");
+
         while (waterball.position.x > targetPos)
         {
             waterball.position += Vector3.left * 10 * Time.deltaTime;
